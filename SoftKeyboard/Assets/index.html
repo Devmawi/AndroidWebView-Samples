@@ -1,0 +1,85 @@
+﻿<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
+    <style>
+
+        body {
+            margin: 0;
+
+        }
+        input {
+            width: 100%
+        }
+    </style>
+</head>
+<body>
+    <div class="keyboard"></div>
+    <div id="message">
+
+    </div>
+    <form>
+        <input id="barcode" type="text" value=""/>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.js"></script>
+    <!--<script src="https://cdn.jsdelivr.net/npm/simple-keyboard-layouts@3.1.159/build/layouts/german.js"></script>-->
+    <script>
+        // see: https://hodgef.com/simple-keyboard/editor/?d=hodgef/simple-keyboard-js-demos/tree/mobile
+        let Keyboard = window.SimpleKeyboard.default;
+        let keyboard = new Keyboard(".keyboard", {
+            onChange: e => console.log(e),
+            onKeyPress: e => { console.log(e); document.getElementById("message").innerText = e },
+            mergeDisplay: true,
+            layoutName: "default",
+            layout: {
+                default: [
+                    "q w e r t y u i o p",
+                    "a s d f g h j k l",
+                    "{shift} z x c v b n m {backspace}",
+                    "{numbers} {space} {ent}"
+                ],
+                shift: [
+                    "Q W E R T Y U I O P",
+                    "A S D F G H J K L",
+                    "{shift} Z X C V B N M {backspace}",
+                    "{numbers} {space} {ent}"
+                ],
+                numbers: ["1 2 3", "4 5 6", "7 8 9", "{abc} 0 {backspace}"]
+            },
+            display: {
+                "{numbers}": "123",
+                "{ent}": "return",
+                "{escape}": "esc ⎋",
+                "{tab}": "tab ⇥",
+                "{backspace}": "⌫",
+                "{capslock}": "caps lock ⇪",
+                "{shift}": "⇧",
+                "{controlleft}": "ctrl ⌃",
+                "{controlright}": "ctrl ⌃",
+                "{altleft}": "alt ⌥",
+                "{altright}": "alt ⌥",
+                "{metaleft}": "cmd ⌘",
+                "{metaright}": "cmd ⌘",
+                "{abc}": "ABC"
+            }
+        })
+    </script>
+    <script>
+        setTimeout(() => {
+
+            let barcode = document.getElementById("barcode")
+            barcode.focus()           
+            barcode.addEventListener('input', e => {
+
+                barcode.value = e.data
+                barcode.focus()
+
+                if (window.InputMethodManager !== undefined && barcode.value.length > 10) // only as demo
+                    window.InputMethodManager.HideSoftInput()
+                
+            })
+        }, 500)
+       
+
+    </script>
+</body>
+</html>
