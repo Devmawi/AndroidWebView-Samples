@@ -1,5 +1,3 @@
-# Android WebView Soft Keyboard
+# Android WebView Samples
 
-Demonstrating virtual keyboard and some useful features:
-* start android app in full screen mode and hiding navigation bar
-* hiding android soft keyboard
+Samples for Xamarin Android WebView
